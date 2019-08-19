@@ -34,9 +34,7 @@ def predict2(text):
   #one ---[None,100,24]
   with graph.as_default():
       res=model2.predict(one_hot_train)
-      print("res",res)
   pred = labelencoder.inverse_transform([np.argmax(res)])
-  print("Step 1 cleared")
   return (pred[0])
 
 @app.route('/')
@@ -48,13 +46,9 @@ def index():
 def predict():
     input = request.form.to_dict()
     input = list(input.values())
-    print(input[0])
     result = predict2(input[0])
-    # print(result)
     res = {'result':result}
-    result_jsonify = jsonify(result=result)
     return flask.render_template('index2.html',user=res)
-    # return jsonify(result=result)
 
 if __name__=='__main__':
     app.run(debug=True)
