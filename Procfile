@@ -1,1 +1,2 @@
-web: uwsgi uwsgi.ini
+web: gunicorn app:app
+init: python3 app.py
