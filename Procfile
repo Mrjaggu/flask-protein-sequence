@@ -1,1 +1,1 @@
-web: uwsgi uwsgi.ini
+web: gunicorn --debug app:app --log-file=-
